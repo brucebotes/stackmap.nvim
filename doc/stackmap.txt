@@ -3,10 +3,11 @@
 This plugin helps you to push a bunch of maps on some event, and then
 pop them when you are done with that event. See examples: 
 
-                                                                   *stackmap()
+                                                              *stackmap.push()
 stackmap.push({name}, {mode}, {mappings})
   
-    Push the {name} mappings for a particular {mode}. >
+    Push the {name} mappings for a particular {mode}. Mappings
+    should be a key-value pair of { lhs = rhs, ... }. >
       
       stackmap.push("example", "n", { 
         ["<space>st"] = "echo 'Amazing you are!'",
@@ -15,14 +16,14 @@ stackmap.push({name}, {mode}, {mappings})
 <
 
 
-     TODO: We should handle different modes seperately?
 
 
                                                                *stackmap.pop()
-stackmap.pop({name})
+stackmap.pop({name}, {mode})
     
-    Pop the mappings for {name} off of the stack. >
-    
+    Pop the mappings for {name} off of the stack. Restore original mappings
+    from before calling |stackmap.push()| >
+
     stackmap.pop("example")
 <
 

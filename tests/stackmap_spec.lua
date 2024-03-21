@@ -61,7 +61,7 @@ describe("stackmap", function()
 		-- local debugging tip
 		-- assert.are.same({}, require("stackmap")._stack)
 
-		require("stackmap").pop("test1")
+		require("stackmap").pop("test1", "n")
 		found = find_mapping("asdfgh")
 		assert.are.same(nil, found)
 	end)
@@ -80,7 +80,7 @@ describe("stackmap", function()
 		-- local debugging tip
 		-- assert.are.same({}, require("stackmap")._stack)
 
-		require("stackmap").pop("test1")
+		require("stackmap").pop("test1", "n")
 		found = find_mapping("asdfgh")
 		assert.are.same("echo 'Original Mapping'", found.rhs)
 	end)

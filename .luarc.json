@@ -1,5 +1,11 @@
 {
     "diagnostics.globals": [
         "vim"
+    ],
+    "workspace.library": [
+        "/Users/brucebotes/.local/share/nvim/lazy/neodev.nvim/types/stable",
+        "/usr/local/Cellar/neovim/0.9.5/share/nvim/runtime/lua",
+        "/Users/brucebotes/projects/nvim_lua/plugin/stackmap.nvim/lua",
+        "${3rd}/luv/library"
     ]
 }

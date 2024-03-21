@@ -26,27 +26,29 @@ M.push = function(name, mode, mappings)
 		vim.keymap.set(mode, lhs, rhs)
 	end
 
-	M._stack[name] = {
-		mode = mode,
+  -- ensure this name is made before
+  M._stack[name] = M._stack[name] or {}
+
+	M._stack[name][mode] = {
 		existing = existing_maps,
 		mappings = mappings,
 	}
 end
 
-M.pop = function(name)
-	local state = M._stack[name]
-	M._stack[name] = nil
+M.pop = function(name, mode)
+	local state = M._stack[name][mode]
+	M._stack[name][mode] = nil
 
-	for lhs, rhs in pairs(state.mappings) do
+	for lhs in pairs(state.mappings) do
 		if state.existing[lhs] then
 			-- handle mappinmgs that existed
 			local original_mapping = state.existing[lhs]
 
 			-- TODO: find a way to pass in options
-			vim.keymap.set("n", lhs, original_mapping.rhs)
+			vim.keymap.set(mode, lhs, original_mapping.rhs)
 		else
 			-- handle mappings that did not exist
-			vim.keymap.del(state.mode, lhs)
+			vim.keymap.del(mode, lhs)
 		end
 	end
 end
