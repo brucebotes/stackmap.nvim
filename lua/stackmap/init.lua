@@ -1,3 +1,12 @@
+--[[
+lua require("stackmap").push(debug_mode, "n", {
+  ["<leader>st"] = "echo 'Hello'",
+  ["<leader>sz"] = "echo 'Goodbye'",
+
+})
+lua require("stackmap").mappings(debug_mode, "n")
+]] --
+
 local find_mapping = function(maps, lhs)
 	for _, value in ipairs(maps) do
 		if value.lhs == lhs then
@@ -62,17 +71,4 @@ M._clear = function()
 	M._stack = {}
 end
 
---[[
-lua require("stackmap").push(debug_mode, "n", {
-  ["<leader>st"] = "echo 'Hello'",
-  ["<leader>sz"] = "echo 'Goodbye'",
-
-})
-]]
---
-
---[[
-lua require("stackmap").mappings(debug_mode)
-]]
---
 return M
